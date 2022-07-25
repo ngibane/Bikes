@@ -1,0 +1,86 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.Background {
+    width: 1300px;
+    height: 700px;
+    background-image: url("../images/KTM-Flo-Design-1-Product-Image.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position:relative;
+}
+.image_container {
+    width: auto;
+    height: 100px;
+    position: center;
+    z-index: 1;
+}
+.filter-box{
+    width:100%;
+    height: 200px;
+    border:solid;
+    padding: 20px;
+ 
+}
+.image-box{
+    width: 100%;
+    height: 50%;
+}
+.content-box {
+    width: 100%;
+    height: auto;
+    border: solid;
+    padding: 20px;
+    margin-top: 20px;
+    display: flex;
+}
+.Info-container-box{
+    width: 20%;
+    height: 200px;
+    border: solid;
+    padding: 20px;
+    margin: 20px;
+}
+.Search_txt {
+    width: 80%;
+    height: 40px;
+    border-radius: 20px;
+    padding: 15px;
+}
+.search_dropDown {
+    width: 15%;
+    height: 40px;
+    padding: 20px;
+    margin: 20px;
+}
+.container{
+
+}
+.price{
+    color: blue;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+.sortByBnt{
+    color:darkblue;
+    border: none;
+    margin:0px 20px;
+    background-color: white;
+}
+

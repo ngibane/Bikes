@@ -1,0 +1,135 @@
+﻿@{
+    ViewData["Title"] = "all bikes";
+}
+<div class="container" id="app">
+    <div class="filter-box text-center">
+        <div>
+            <p>Sort By:  <button v-on:click="OrderDataByPriceHighToLow" class="sortByBnt">Price high to low</button> <button v-on:click="OrderDataByPriceLowToHigh" class="sortByBnt">Price low to high</button> </p>
+        </div>
+        <input class="Search_txt" type="text" name="Search" id="Search" placeholder="Bike Model, Make" v-model="TypedValue"/>
+        
+         <div>
+             <input class="search_dropDown" type="text" id="MinPrice" name="MinPrice" placeholder="Min Price" />
+            <input class="search_dropDown" type="text" id="MaxPrice" name="MaxPrice" placeholder="Max Price"/>
+        </div>
+        <button v-on:click="FilterData"></button>
+    </div>
+    <div class="content-box"> 
+        <table class="table table-bordered table-striped table-responsive">
+            <thead>
+                <tr>
+                    <th scope="col">Model</th>
+                    <th scope="col">Make</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">year</th>
+                    <th scope="col">Terrain</th>
+                    <th scope="col">Displacement</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in DisplayedArray">
+                    <th scope="row">{{item.model}}</th>
+                    <th scope="row">{{item.make}}</th>
+                    <th scope="row">{{item.price}}</th>
+                    <th scope="row">{{item.year}}</th>
+                    <th scope="row">{{item.terrain}}</th>
+                    <th scope="row">{{item.displacement}}</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+@section Scripts
+{
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue-multiselect@2.1.0"></script>
+    <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">
+    <script type="text/javascript">
+    let app = Vue.createApp({
+        data(){
+            return{
+               message: 'Aibo angiboni izosebenza lempahla',
+               Bikes: GetBikes(),
+               BikeId:{ "label": "Model,Make", "id": "0" },
+               BikesList: [],
+               TypedValue: "",
+               DisplayedArray:[]
+            }
+        },
+        mounted: function(){
+            let bikes = [];
+            axios.get('/Bike/Bikes')
+              .then(response => {
+                 this.BikesList = response.data;
+                 this.DisplayedArray = response.data;
+                 for (let i = 0; i < response.data.length; i++) {
+                    bikes.push( response.data[i].model);
+                }
+             });
+             console.log(bikes);   
+        },
+        methods:{
+            OrderDataByPriceLowToHigh(){
+                this.DisplayedArray.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+            },
+            OrderDataByPriceHighToLow(){
+                this.DisplayedArray.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+            },
+            FilterData()
+            {
+                var MinPrice = $('#MinPrice').val();
+                var MaxPrice = $('#MaxPrice').val();
+                var Results = [];
+                if(this.TypedValue != "")
+                {
+                    Results = this.BikesList.find(x=>x.model === this.TypedValue);
+                    console.log(Results);
+                }
+                if(this.MinPrice > 0)
+                {
+                    Results = this.BikesList.find(x=>x.price >= MinPrice);
+                    console.log(Results);
+                }
+                if(MaxPrice > 0 && MaxPrice > MinPrice)
+                {
+                     Results = this.BikesList.find(x=>x.price <= MaxPrice);
+                     console.log(Results);
+                }
+            }
+        }
+    })
+    app.mount('#app');
+
+    function GetBikes(){
+        let bikes =[];
+         axios.get('/Bike/Bikes')
+         .then(function (response) {
+                for (let i = 0; i < response.data.length; i++) {
+                    bikes.push({
+                        id: response.data[i].bikeID,
+                        label: response.data[i].make,
+                    });
+                }
+            });
+        return (bikes);
+    }
+     @*Searchable textbox*@
+            //$(function () {
+            //    var availableTags = [];
+            //    axios.get('/Bike/Bikes')
+            //        .then(function (response) {
+            //            for (let i = 0; i < response.data.length; i++) {
+            //                availableTags.push(response.data[i].model);
+            //            }
+            //        });
+            //    $("#Search").autocomplete({
+            //        source: availableTags
+            //    });
+            //});
+</script>
+}

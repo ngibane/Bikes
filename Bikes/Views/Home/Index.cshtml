@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div id="app">
+    <div class="Background">
+       @* <img src="images/KTM-Flo-Design-1-Product-Image.jpg" />*@
+        <div class="text-center image_container">
+         <h1 class="display-4">Welcome</h1>
+         <p><a href="@Url.Action("GetBikes","Bike")">View All Bikes</a>.</p>
+         <p>{{message}}</p>
+        </div>
+    </div>  
+    
+</div>
+
+
+@section Scripts
+{
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+    let app = Vue.createApp({
+        data(){
+            return{
+               message: 'Aibo angiboni izosebenza lempahla',
+               Bikes: GetBikes()
+            }
+        },
+        mounted(){
+            this.GetBikes()
+        },
+        methods:{
+            GetBikes(){
+              console.log(this.Bikes)
+            }
+        }
+    })
+    app.mount('#app');
+
+    function GetBikes(){
+        let bikes =[];
+         axios.get('/Bike/Bikes')
+         .then(function (response) {
+                for (let i = 0; i < response.data.length; i++) {
+                    bikes.push({
+                        id: response.data[i].bikeID,
+                        Make: response.data[i].make,
+                        Model: response.data[i].model,
+                        Year: response.data[i].year,
+                        Displacement: response.data[i].displacement,
+                        Price: response.data[i].price,
+                        Terrain: response.data[i].terrain,
+                        Description: response.data[i].description
+                    });
+                }
+            });
+        return (bikes);
+    }
+</script>
+}
