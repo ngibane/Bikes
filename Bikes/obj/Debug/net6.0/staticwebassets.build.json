@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "9TgoUvEKpynKsqfcXFzU2JWBgL/C3ZGYO9rARr1Ufh4=",
+  "Hash": "vaQm6moIBuktocgq2uQna3yHuLo0LKFn2GJYhD+vytw=",
   "Source": "Bikes",
   "BasePath": "_content/Bikes",
   "Mode": "Default",
@@ -1103,6 +1103,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\SIBONISO MXOLISI\\Desktop\\Bikes\\Bikes\\wwwroot\\package.json",
+      "SourceId": "Bikes",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\SIBONISO MXOLISI\\Desktop\\Bikes\\Bikes\\wwwroot\\",
+      "BasePath": "_content/Bikes",
+      "RelativePath": "package.json",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\package.json"
     },
     {
       "Identity": "C:\\Users\\SIBONISO MXOLISI\\Desktop\\Bikes\\Bikes\\wwwroot\\package-lock.json",

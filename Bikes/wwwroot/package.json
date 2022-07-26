@@ -1,0 +1,26 @@
+{
+  "name": "coreui",
+  "version": "4.1.0",
+  "description": "core ui packages",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "@coreui/coreui": "^4.1.0",
+    "@popperjs/core": "^2.4.4",
+    "perfect-scrollbar": "^1.5.0",
+    "@coreui/icons": "^2.1.0",
+    "simplebar": "^5.3.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "core",
+    "ui"
+  ],
+  "author": "App Factory",
+  "license": "ISC"
+}
